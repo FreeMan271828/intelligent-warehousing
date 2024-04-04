@@ -30,4 +30,3 @@
 
    6. 在项目中打印重要信息不允许使用`System.out.println()`（因为SpringBoot有多线程，你不会知道到底打印哪去了），打印信息使用日志，日志类使用`private final Logger LOG = LoggerFactory.getLogger(yourFile.class)`，然后`LOG.info() LOG.warn() LOG.error()`即可打印一般信息，警告信息，错误信息
 5. 人员组成
-   黄施远
