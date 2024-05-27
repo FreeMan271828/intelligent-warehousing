@@ -1,13 +1,12 @@
-package org.iwp.intelligentwarehousing.Entity.SysUser;
+package org.iwp.intelligentwarehousing.entity.SysUserDO;
 
 import java.util.Date;
 
-public class UserDO {
+public class RolePower {
+
     private String id;
-    private String realName;
-    private String nickName;
-    private String password;
-    private boolean isDeleted;
+    private String roleId;
+    private String powerId;
     private Date gmtCreated;
     private Date gmtModified;
     private String createUserName;
@@ -22,36 +21,20 @@ public class UserDO {
         this.id = id;
     }
 
-    public String getRealName() {
-        return realName;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setRealName(String realName) {
-        this.realName = realName;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getPowerId() {
+        return powerId;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
+    public void setPowerId(String powerId) {
+        this.powerId = powerId;
     }
 
     public Date getGmtCreated() {

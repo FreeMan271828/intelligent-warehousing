@@ -1,4 +1,4 @@
-package org.iwp.intelligentwarehousing.Entity.SysUser;
+package org.iwp.intelligentwarehousing.entity.SysUserDO;
 import java.util.Date;
 
 public class PowerDO {

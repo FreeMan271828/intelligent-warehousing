@@ -1,12 +1,11 @@
-package org.iwp.intelligentwarehousing.Entity.SysUser;
-
+package org.iwp.intelligentwarehousing.entity.SysUserDO;
 import java.util.Date;
 
-public class RolePower {
+public class UserRole {
 
     private String id;
+    private String userId;
     private String roleId;
-    private String powerId;
     private Date gmtCreated;
     private Date gmtModified;
     private String createUserName;
@@ -21,20 +20,20 @@ public class RolePower {
         this.id = id;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public String getRoleId() {
         return roleId;
     }
 
     public void setRoleId(String roleId) {
         this.roleId = roleId;
-    }
-
-    public String getPowerId() {
-        return powerId;
-    }
-
-    public void setPowerId(String powerId) {
-        this.powerId = powerId;
     }
 
     public Date getGmtCreated() {
