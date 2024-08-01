@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: intelligent-warehousing
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://118.89.136.119:1433;databaseName=IntelligentWarehousing
+    username: sa
+    password: '@abc123456'
+
+  redis:
+    host: 118.89.136.119
+    port: 6379
+    password: freeman271828
+
+  neo4j:
+    uri: neo4j://118.89.136.119:7687
+    authentication:
+      username: neo4j
+      password: '@abc123456'
+
+  thymeleaf:
+    cache: false                      # ???????
+    prefix: classpath:/templates/     # ???????
+    suffix: .html                     # ????
+    mode: HTML                        # ????
+    encoding: UTF-8                   # ????
+
+logging:
+  level:
+    root: debug
+
+server:
+  port: 8080
+
+mybatis:
+  mapper-locations: classpath*:/mapper/*.xml
+
+springdoc:
+  swagger-ui:
+    path: /api

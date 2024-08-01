@@ -1,43 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.7.11</version>
 	</parent>
-	<groupId>org.iwp</groupId>
-	<artifactId>intelligent-warehousing</artifactId>
+
+	<groupId>cn.xw</groupId>
+	<artifactId>OpenAPI_3_Demo_Swagger3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>intelligent-warehousing</name>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>21</java.version>
-	</properties>
+
 	<dependencies>
-		<!--MyBatis依赖-->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.5.6</version>
-		</dependency>
-		<!--mysql驱动-->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.28</version>
-		</dependency>
-		<!--MongoDB驱动-->
+		<!--Spring Boot的核心启动器，包含了自动配置、日志和YAML-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-		<!--Thymeleaf驱动-->
+		<!--导入SpringBoot集成Thymeleaf启动器-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!--Lombok坐标导入-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- 导入SpringBoot集成Open API 3.0（Swagger3.0）的坐标 -->
+		<!-- 这个坐标它提供了一组注解和工具来集成Swagger UI和OpenAPI规范等-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<!--Neo4j依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-neo4j</artifactId>
+		</dependency>
+		<!--MyBatis依赖-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<!--Sql server-->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>9.4.0.jre8</version>
+		</dependency>
+		<!-- Spring Data Redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.10</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -52,11 +77,28 @@
 
 	<build>
 		<plugins>
+			<!--配置maven编译版本-->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>1.8</source><!--源代码使用的JDK-->
+					<target>1.8</target><!--target需要生成的目标class文件的编译版本-->
+					<encoding>UTF-8</encoding><!--字符集编码，防止中文乱码-->
+					<failOnError>true</failOnError><!--指示即使存在编译错误，构建是否仍将继续-->
+					<failOnWarning>false</failOnWarning><!--指示即使存在编译警告，构建是否仍将继续-->
+					<showDeprecation>false</showDeprecation><!--设置是否显示使用不推荐API的源位置-->
+					<showWarnings>false</showWarnings><!--设为true若要显示编译警告，请执行以下操作-->
+					<meminitial>128M</meminitial><!--编译器使用的初始化内存-->
+					<maxmem>512M</maxmem><!--编译器使用的最大内存-->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-maven-plugin</artifactId>
+				<version>${kotlin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
