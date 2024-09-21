@@ -1,6 +1,5 @@
-package org.iwp.iWare.util.Impl;
+package org.iwp.iWare.util;
 
-import org.iwp.iWare.util.RedisCodeMaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -10,21 +9,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 @Component
-public class RedisCodeMakerImpl implements RedisCodeMaker {
+public class RedisCodeUtil {
 
-    private final StringRedisTemplate redisTemplate;
+    private static StringRedisTemplate redisTemplate = null;
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     @Autowired
-    public RedisCodeMakerImpl(StringRedisTemplate redisTemplate) {
-        this.redisTemplate = redisTemplate;
+    public RedisCodeUtil(StringRedisTemplate redisTemplate) {
+        RedisCodeUtil.redisTemplate = redisTemplate;
     }
 
-    public String generateCode(Class<?> entityClass) {
+    public static String generateCode(Class<?> entityClass) {
         String key = "entity:" + entityClass.getSimpleName();
         String dateStr = LocalDate.now().format(formatter);
         String fullKey = key + ":" + dateStr;
+
 
         // 使用 INCR 命令生成序列号
         int index = Math.toIntExact(redisTemplate.opsForValue().increment(fullKey));

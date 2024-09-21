@@ -2,15 +2,17 @@ package org.iwp.iWare.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.iwp.iWare.entity.UserDo;
-import org.iwp.iWare.model.ResponseResult.Result;
+import org.iwp.iWare.object.Do.UserDo;
+import org.iwp.iWare.object.entity.User;
+import org.iwp.iWare.object.model.ResponseModel;
 import org.iwp.iWare.service.UserService;
+import org.iwp.iWare.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Tag(name = "用户接口")
 @RequestMapping("/api/user")
+@Tag(name = "用户接口")
 public class UserApi {
 
     private final UserService userService;
@@ -20,19 +22,25 @@ public class UserApi {
         this.userService = userService;
     }
 
+//    @PostMapping("/login")
+//    @Operation(summary = "登录")
+//    public ResponseModel login(@RequestBody String username, String password) {
+//
+//    }
+
     @PostMapping("/register")
     @Operation(summary = "注册用户")
-    public Result register(@RequestParam String username,
-                           @RequestParam String password) {
-        UserDo input = new UserDo();
-        input.setName(username);
-        input.setPassword(password);
-        return userService.register(input);
+    public ResponseModel register(@RequestParam String username,
+                                  @RequestParam String password) {
+        User user = new User();
+        user.setName(username);
+        user.setPassword(password);
+        return ResponseUtil.Success(userService.register(user));
     }
 
     @GetMapping("queryAll")
     @Operation(summary = "查询全部用户")
-    public Result queryAll() {
-        return userService.findAll();
+    public ResponseModel queryAll() {
+        return ResponseUtil.Success(userService.findAll());
     }
 }

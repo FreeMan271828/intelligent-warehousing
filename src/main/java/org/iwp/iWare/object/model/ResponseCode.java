@@ -1,9 +1,9 @@
-package org.iwp.iWare.model.ResponseResult;
+package org.iwp.iWare.object.model;
 
 import lombok.Getter;
 
 @Getter
-public enum ResultCode {
+public enum ResponseCode {
     //成功状态
     SUCCESS(1, "成功"),
     //参数错误状态
@@ -18,7 +18,7 @@ public enum ResultCode {
     private final String message;
 
     // 枚举的构造函数，它必须为 private 或者 package-private（即默认访问级别）
-    private ResultCode(Integer code, String message) {
+    private ResponseCode(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

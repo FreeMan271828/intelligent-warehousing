@@ -1,11 +1,15 @@
 package org.iwp.iWare.service;
 
-import org.iwp.iWare.entity.UserDo;
-import org.iwp.iWare.model.ResponseResult.Result;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.iwp.iWare.object.Do.UserDo;
+import org.iwp.iWare.object.entity.User;
+import org.iwp.iWare.object.model.ResponseModel;
+
+import java.util.List;
 
 public interface UserService {
 
-    Result register(UserDo user);
+    Boolean register(User user);
 
-    Result findAll();
+    List<User> findAll();
 }

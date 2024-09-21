@@ -1,15 +1,8 @@
 package org.iwp.iWare.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.iwp.iWare.entity.UserDo;
-
-import java.util.List;
+import org.iwp.iWare.object.Do.UserDo;
 
 @Mapper
-public interface UserDao {
-    //单条增加用户
-    Integer AddUser(UserDo user);
-
-    //获取全部用户
-    List<UserDo> GetAllUsers();
-}
+public interface UserDao extends BaseMapper<UserDo> {}
