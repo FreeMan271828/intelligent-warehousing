@@ -9,10 +9,20 @@
 	</parent>
 
 	<groupId>cn.xw</groupId>
-	<artifactId>OpenAPI_3_Demo_Swagger3</artifactId>
+	<artifactId>OpenApi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>application.all</module>
+		<module>user.all</module>
+		<module>device.all</module>
+		<module>equip.all</module>
+		<module>health.all</module>
+		<module>maintaince.all</module>
+		<module>common.all</module>
+	</modules>
 
-	<dependencies>
+    <dependencies>
 		<!--Spring Boot的核心启动器，包含了自动配置、日志和YAML-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
