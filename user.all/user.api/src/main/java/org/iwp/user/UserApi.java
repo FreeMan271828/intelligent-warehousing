@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.iwp.common.model.ResponseModel;
 import org.iwp.common.util.ResponseUtil;
 import org.iwp.user.entity.User;
-import org.iwp.user.service.impl.UserService;
+import org.iwp.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +21,11 @@ public class UserApi {
         this.userService = userService;
     }
 
-//    @PostMapping("/login")
-//    @Operation(summary = "登录")
-//    public ResponseModel login(@RequestBody String username, String password) {
-//
-//    }
+    @PostMapping("/login")
+    @Operation(summary = "登录")
+    public ResponseModel login(@RequestParam String username, @RequestParam String password) {
+        return userService.ifExist(username, password);
+    }
 
     @PostMapping("/register")
     @Operation(summary = "注册用户")
@@ -34,7 +34,19 @@ public class UserApi {
         User user = new User();
         user.setName(username);
         user.setPassword(password);
-        return ResponseUtil.Success(userService.register(user));
+        return userService.add(user);
+    }
+
+    @GetMapping("/getStatus")
+    @Operation(summary = "获取用户状态")
+    public ResponseModel getStatus(@RequestParam String username) {
+        return userService.getStatus(username);
+    }
+
+    @PostMapping("/updateStatus")
+    @Operation(summary = "修改用户状态")
+    public ResponseModel updateStatus(@RequestParam String username){
+        return userService.updateStatus(username);
     }
 
     @GetMapping("queryAll")

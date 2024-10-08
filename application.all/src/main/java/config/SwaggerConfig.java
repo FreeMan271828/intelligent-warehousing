@@ -1,4 +1,4 @@
-package org.iwp.iWare.config;
+package config;
 
 
 // 使用注解的方式实现描Swagger的配置
