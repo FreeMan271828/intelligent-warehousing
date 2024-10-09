@@ -29,11 +29,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseModel add(User user) {
-        if(StringUtils.containsWhitespace(user.getName()) ||
-           StringUtils.containsWhitespace(user.getPassword())) {
-            LogUtil.error("用户姓名以及密码不能为空");
+        ResponseModel paramResponseModel = checkParam(user.getName(), user.getPassword());
+        if (paramResponseModel != null) {
+            return paramResponseModel;
+        }
+        if(ifExistName(user.getName())){
             ResponseModel responseModel = ResponseUtil.ParamError(null);
-            responseModel.setMsg("用户姓名以及密码不能为空");
+            responseModel.setMsg("用户名已存在");
             return responseModel;
         }
         user.setCode(RedisCodeUtil.generateCode(UserDao.class));
@@ -50,12 +52,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseModel ifExist(String name, String password) {
-        if(StringUtils.containsWhitespace(name) || StringUtils.containsWhitespace(password)) {
-            LogUtil.error("用户姓名以及密码不能为空");
-            ResponseModel responseModel = ResponseUtil.ParamError(null);
-            responseModel.setMsg("用户姓名以及密码不能为空");
-            return responseModel;
+        ResponseModel paramResponseModel = checkParam(name, password);
+        if (paramResponseModel != null) {
+            return paramResponseModel;
         }
+
         QueryWrapper<UserDo> wrapper = new QueryWrapper<>();
         wrapper.eq("name", name);
         wrapper.eq("password", password);
@@ -69,12 +70,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseModel getStatus(String name) {
-        if(StringUtils.containsWhitespace(name)) {
-            LogUtil.error("姓名不能为空");
-            ResponseModel responseModel = ResponseUtil.ParamError(null);
-            responseModel.setMsg("姓名不能为空");
-            return responseModel;
+    public int getStatus(String name) {
+        ResponseModel paramResponseModel = checkParam(name);
+        if (paramResponseModel != null) {
+            return -1;
         }
         QueryWrapper<UserDo> wrapper = new QueryWrapper<>();
         wrapper.eq("name", name);
@@ -82,30 +81,24 @@ public class UserServiceImpl implements UserService {
         if(list.isEmpty()) {
             ResponseModel responseModel = ResponseUtil.ServerError(null);
             responseModel.setMsg("姓名错误, 找不到"+name);
-            return responseModel;
+            return -2;
         }
-        return ResponseUtil.Success(list.get(0).getStatus());
+        return list.get(0).getStatus();
     }
 
     @Override
     public ResponseModel updateStatus(String name) {
-
-        if(StringUtils.containsWhitespace(name)) {
-            LogUtil.error("姓名不能为空");
-            ResponseModel responseModel = ResponseUtil.ParamError(null);
-            responseModel.setMsg("姓名不能为空");
-            return responseModel;
+        ResponseModel paramResponseModel = checkParam(name);
+        if (paramResponseModel != null) {
+            return paramResponseModel;
         }
 
-        QueryWrapper<UserDo> wrapper = new QueryWrapper<>();
-        wrapper.eq("name", name);
-        List<UserDo> queryRet = userDao.selectList(wrapper);
-        if(queryRet.isEmpty()) {
+        int status = getStatus(name);
+        if(status==-2){
             ResponseModel responseModel = ResponseUtil.ServerError(null);
             responseModel.setMsg("姓名错误, 找不到"+name);
             return responseModel;
         }
-        int status = queryRet.get(0).getStatus();
 
         UpdateWrapper<UserDo> userDoUpdateWrapper = new UpdateWrapper<>();
         userDoUpdateWrapper.eq("name", name);
@@ -123,6 +116,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public ResponseModel delete(String name) {
+        ResponseModel paramResponseModel = checkParam(name);
+        if (paramResponseModel != null) {
+            return paramResponseModel;
+        }
+        QueryWrapper<UserDo> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", name);
+        int deleteRet = userDao.delete(wrapper);
+        if(deleteRet<=0){
+            ResponseModel responseModel = ResponseUtil.ServerError(null);
+            responseModel.setMsg("删除失败");
+            return responseModel;
+        }
+        return ResponseUtil.Success(deleteRet);
+    }
+
+    @Override
     public List<User> findAll(){
         QueryWrapper<UserDo> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("code");
@@ -132,4 +142,47 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());  // 收集转换后的结果到List<User>中
     }
 
+
+
+    /**
+     * 判断参数是否合法
+     * @param name 姓名
+     * @param password 密码
+     * @return 返回null表示不需要处理错误, 否则需要处理
+     */
+    private ResponseModel checkParam(String name, String password) {
+        if (StringUtils.containsWhitespace(name) || StringUtils.containsWhitespace(password)) {
+            LogUtil.error("用户姓名以及密码不能为空");
+            ResponseModel responseModel = ResponseUtil.ParamError(null);
+            responseModel.setMsg("用户姓名以及密码不能为空");
+            return responseModel;
+        }
+        return null;
+    }
+
+    /**
+     * 判断参数是否合法
+     * @param name 姓名
+     * @return 返回null表示不需要处理错误, 否则需要处理
+     */
+    private ResponseModel checkParam(String name) {
+        if (StringUtils.containsWhitespace(name)) {
+            LogUtil.error("姓名不能为空");
+            ResponseModel responseModel = ResponseUtil.ParamError(null);
+            responseModel.setMsg("姓名不能为空");
+            return responseModel;
+        }
+        return null;
+    }
+
+    /**
+     * 判断姓名是否存在
+     * @param name 姓名
+     * @return 若存在返回true
+     */
+    private boolean ifExistName(String name) {
+        QueryWrapper<UserDo> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", name);
+        return userDao.selectCount(wrapper) > 0;
+    }
 }

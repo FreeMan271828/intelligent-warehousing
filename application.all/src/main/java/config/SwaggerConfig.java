@@ -9,15 +9,10 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.boot.SpringBootConfiguration;
 
-/**
- * @author Anhui OuYang
- * @version 1.0
- **/
 @SpringBootConfiguration
 @OpenAPIDefinition(
         // ## API的基本信息，包括标题、版本号、描述、联系人等

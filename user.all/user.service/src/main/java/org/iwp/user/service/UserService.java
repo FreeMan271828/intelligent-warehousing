@@ -12,9 +12,11 @@ public interface UserService {
 
     ResponseModel ifExist(String name, String password);
 
-    ResponseModel getStatus(String name);
+    int getStatus(String name);
 
     ResponseModel updateStatus(String name);
+
+    ResponseModel delete(String name);
 
     List<User> findAll();
 }

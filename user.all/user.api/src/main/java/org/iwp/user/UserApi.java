@@ -40,13 +40,32 @@ public class UserApi {
     @GetMapping("/getStatus")
     @Operation(summary = "获取用户状态")
     public ResponseModel getStatus(@RequestParam String username) {
-        return userService.getStatus(username);
+        int ret = userService.getStatus(username);
+        if (ret == -2) {
+            ResponseModel responseModel = ResponseUtil.ServerError(null);
+            responseModel.setMsg("姓名错误, 找不到"+username);
+            return responseModel;
+        }
+        else if (ret == -1) {
+            ResponseModel responseModel = ResponseUtil.ParamError(null);
+            responseModel.setMsg("姓名不能为空");
+            return responseModel;
+        }
+        else{
+            return ResponseUtil.Success(ret);
+        }
     }
 
-    @PostMapping("/updateStatus")
+    @PostMapping("/changeStatus")
     @Operation(summary = "修改用户状态")
     public ResponseModel updateStatus(@RequestParam String username){
         return userService.updateStatus(username);
+    }
+
+    @PostMapping("/deleteUser")
+    @Operation(summary = "删除用户")
+    public ResponseModel delete(@RequestParam String username){
+        return userService.delete(username);
     }
 
     @GetMapping("queryAll")
