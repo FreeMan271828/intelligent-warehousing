@@ -7,13 +7,10 @@
         <groupId>cn.xw</groupId>
         <artifactId>OpenApi</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>device.all</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>device.service</module>
-    </modules>
+    <artifactId>device.service.impl</artifactId>
 
     <properties>
         <maven.compiler.source>22</maven.compiler.source>

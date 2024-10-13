@@ -20,6 +20,8 @@
 		<module>health.all</module>
 		<module>maintaince.all</module>
 		<module>common.all</module>
+		<module>device.all/device.service.impl</module>
+		<module>device.all/device.api</module>
 	</modules>
 
     <dependencies>

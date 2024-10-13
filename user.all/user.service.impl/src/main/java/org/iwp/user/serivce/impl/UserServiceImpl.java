@@ -7,7 +7,7 @@ import org.iwp.common.util.LogUtil;
 import org.iwp.common.util.RedisCodeUtil;
 import org.iwp.common.util.ResponseUtil;
 import org.iwp.user.dao.UserDao;
-import org.iwp.user.dataobject.UserDo;
+import org.iwp.user.dataObject.UserDo;
 import org.iwp.user.entity.User;
 import org.iwp.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
