@@ -5,16 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.xw</groupId>
-        <artifactId>OpenApi</artifactId>
+        <artifactId>health.all</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>health.all</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>health.api</module>
-        <module>health.service</module>
-        <module>health.service.impl</module>
-    </modules>
+
+    <artifactId>health.service</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.xw</groupId>
+            <artifactId>common.all</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
