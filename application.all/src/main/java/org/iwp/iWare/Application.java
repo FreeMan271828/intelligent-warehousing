@@ -4,8 +4,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"org.iwp.iWare", "org.iwp.user","org.iwp.common"})
-@MapperScan(basePackages = "org.iwp.user.dao")
+@SpringBootApplication(scanBasePackages =
+		{"org.iwp.iWare", "org.iwp.user","org.iwp.common","org.iwp.device"})
+@MapperScan(basePackages =
+		{"org.iwp.user.dao", "org.iwp.device.dao"})
 public class Application {
 
 	public static void main(String[] args) {

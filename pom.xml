@@ -12,6 +12,7 @@
 	<artifactId>OpenApi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <modules>
         <module>application.all</module>
 		<module>user.all</module>

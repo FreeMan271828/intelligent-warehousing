@@ -10,6 +10,10 @@ public class PieChartUtil {
     public static PieChartModel buildPieChart(Map<String, Integer> input) {
         PieChartModel pieChartModel = new PieChartModel();
         int count = 0;
+        for (Map.Entry<String, Integer> entry : input.entrySet()) {
+            count += entry.getValue();
+        }
+        pieChartModel.setTotalCount(count);
         List<PieChartModel.PieData> pieDataList = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : input.entrySet()) {
             String name = entry.getKey();
@@ -18,7 +22,6 @@ public class PieChartUtil {
             pieDataList.add(new PieChartModel.PieData(name, value, ratio));
             count += value;
         }
-        pieChartModel.setTotalCount(count);
         pieChartModel.setValues(pieDataList);
         return pieChartModel;
     }
