@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>maintaince.service</module>
+        <module>maintaince.api</module>
+        <module>maintaince.serviceImpl</module>
     </modules>
 
 </project>
