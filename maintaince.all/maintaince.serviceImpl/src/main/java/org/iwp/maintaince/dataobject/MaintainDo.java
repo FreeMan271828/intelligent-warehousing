@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class MaintainDo implements Serializable {
-    @Schema(name="Maintain Id",description = "维修标识码")
+    @Schema(name="Maintain Id",description = "保养标识码")
     @TableId(value="id",type= IdType.AUTO)
     private int id;
 
@@ -42,26 +42,26 @@ public class MaintainDo implements Serializable {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime errorDateTime;
 
-    @Schema(name="Maintain DateTime",description = "维修时间")
+    @Schema(name="Maintain DateTime",description = "保养时间")
     @TableField("maintainDateTime")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime maintainDateTime;
 
-    @Schema(name="Maintain Status",description = "维修状态")
+    @Schema(name="Maintain Status",description = "保养状态")
     @TableField("status")
     private int status;
 
-    @Schema(name="Reporter",description = "报修人")
+    @Schema(name="Reporter",description = "申请人")
     @TableField("reporter")
     private String reporter;
 
-    @Schema(name="Reason",description = "报修理由")
+    @Schema(name="Reason",description = "申请理由")
     @TableField("reason")
     private String reason;
 
-    @Schema(name="Maintainer",description = "维修人")
+    @Schema(name="Maintainer",description = "保养工人")
     @TableField("maintainer")
     private String maintainer;
 
