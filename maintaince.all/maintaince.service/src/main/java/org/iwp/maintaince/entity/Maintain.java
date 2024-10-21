@@ -1,7 +1,9 @@
 package org.iwp.maintaince.entity;
 
-import java.time.LocalDateTime;
+import lombok.Data;
 
+import java.time.LocalDateTime;
+@Data
 public class Maintain {
     private int id;
     private String facCode;

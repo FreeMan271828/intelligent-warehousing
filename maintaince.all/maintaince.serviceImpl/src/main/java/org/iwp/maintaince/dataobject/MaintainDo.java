@@ -3,6 +3,7 @@ package org.iwp.maintaince.dataobject;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -10,10 +11,13 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jdk.vm.ci.meta.Value;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Data
+@TableName(value = "maintain")
 public class MaintainDo implements Serializable {
     @Schema(name="Maintain Id",description = "保养标识码")
     @TableId(value="id",type= IdType.AUTO)
