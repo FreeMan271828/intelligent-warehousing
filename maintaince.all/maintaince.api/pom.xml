@@ -9,14 +9,19 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>maintaince.service</artifactId>
+    <artifactId>maintaince.api</artifactId>
+
 
     <dependencies>
+        <dependency>
+            <groupId>cn.xw</groupId>
+            <artifactId>maintaince.service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>cn.xw</groupId>
             <artifactId>common.all</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
 </project>
