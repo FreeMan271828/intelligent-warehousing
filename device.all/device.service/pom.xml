@@ -11,5 +11,12 @@
 
     <artifactId>device.service</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.xw</groupId>
+            <artifactId>common.all</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
