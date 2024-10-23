@@ -66,8 +66,8 @@ public class MaintainServiceImpl implements MaintainService {
         List<Object> responseList = keepRecordDos.stream()
                 .map(keepRecordDo -> {
                     Map<String, String> map = new HashMap<>();
-                    map.put("PlanTime", keepRecordDo.getKeepPlanTime()!= null? keepRecordDo.getKeepPlanTime().toString() : "");
-                    map.put("CompleteTime", keepRecordDo.getKeepFinishTime()!= null? keepRecordDo.getKeepFinishTime().toString() : "");
+//                    map.put("PlanTime", keepRecordDo.getKeepPlanTime()!= null? keepRecordDo.getKeepPlanTime().toString() : "");
+//                    map.put("CompleteTime", keepRecordDo.getKeepFinishTime()!= null? keepRecordDo.getKeepFinishTime().toString() : "");
                     map.put("DeviceCode", DeviceCode);
                     map.put("KeepContent", keepRecordDo.getKeepContent()!= null? keepRecordDo.getKeepContent() : "");
                     return map;

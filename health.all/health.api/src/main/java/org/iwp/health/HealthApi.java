@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.iwp.common.model.PieChartModel;
 import org.iwp.common.model.ResponseModel;
+import org.iwp.health.service.HealthService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,12 +19,12 @@ import java.time.Year;
 @RequestMapping("api/health")
 
 public class HealthApi {
-
+    private HealthService healthService;
     @GetMapping("getHealthDegree")
     @Operation(summary = "获取设备健康指数")
     public ResponseModel getHealthDegree(@RequestParam String startYear, @RequestParam String startMonth,
                                          @RequestParam String endYear, @RequestParam String endMonth){
-        return null;
+        return healthService.getHealthDegree(startYear,startMonth,endYear,endMonth);
     }
 
     @GetMapping("CountEquipOperation")

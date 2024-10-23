@@ -1,10 +1,9 @@
-package org.iwp.miantaince;
+package org.iwp.maintaince;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.iwp.common.model.ResponseModel;
 import org.iwp.maintaince.service.MaintainService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
